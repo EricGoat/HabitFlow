@@ -1,1 +1,134 @@
-<p>signup works!</p>
+<div class="signup-container">
+  <h1>Create Account</h1>
+
+  <form
+    class="signup-form"
+    (ngSubmit)="onSubmit(username.value, email.value, password.value, confirmPassword.value)"
+  >
+
+    <!-- Username -->
+    <div class="input-row">
+      <input
+        #username
+        type="text"
+        placeholder="Username"
+        required
+        [class.invalid]="username.value.length > 0 && !isUsernameValid(username.value)"
+        [class.valid]="isUsernameValid(username.value)"
+      />
+
+      <span
+        class="checkmark"
+        *ngIf="isUsernameValid(username.value)"
+      >
+        ✅
+      </span>
+    </div>
+
+    <small class="hint">
+      Must be at least 5 characters and contain no spaces.
+    </small>
+
+    <small
+      class="error"
+      *ngIf="username.value.length > 0 && !isUsernameValid(username.value)"
+    >
+      Invalid username.
+    </small>
+
+    <!-- Email -->
+    <div class="input-row">
+      <input
+        #email
+        type="email"
+        placeholder="Email"
+        required
+        [class.invalid]="email.value.length > 0 && !isEmailValid(email.value)"
+        [class.valid]="isEmailValid(email.value)"
+      />
+
+      <span
+        class="checkmark"
+        *ngIf="isEmailValid(email.value)"
+      >
+        ✅
+      </span>
+    </div>
+
+    <small class="hint">
+      Must be a valid email address.
+    </small>
+
+    <small
+      class="error"
+      *ngIf="email.value.length > 0 && !isEmailValid(email.value)"
+    >
+      Invalid email format.
+    </small>
+
+    <!-- Password -->
+    <div class="input-row">
+      <input
+        #password
+        type="password"
+        placeholder="Password"
+        required
+        [class.invalid]="password.value.length > 0 && !isPasswordValid(password.value)"
+        [class.valid]="isPasswordValid(password.value)"
+      />
+
+      <span
+        class="checkmark"
+        *ngIf="isPasswordValid(password.value)"
+      >
+        ✅
+      </span>
+    </div>
+
+    <small class="hint">
+      Must contain an uppercase letter, a number, and no spaces.
+    </small>
+
+    <small
+      class="error"
+      *ngIf="password.value.length > 0 && !isPasswordValid(password.value)"
+    >
+      Invalid password.
+    </small>
+
+    <!-- Confirm Password -->
+    <div class="input-row">
+      <input
+        #confirmPassword
+        type="password"
+        placeholder="Confirm Password"
+        required
+        [class.invalid]="confirmPassword.value.length > 0 && !doPasswordsMatch(password.value, confirmPassword.value)"
+        [class.valid]="doPasswordsMatch(password.value, confirmPassword.value)"
+      />
+
+      <span
+        class="checkmark"
+        *ngIf="doPasswordsMatch(password.value, confirmPassword.value)"
+      >
+        ✅
+      </span>
+    </div>
+
+    <small class="hint">
+      Must match the password above.
+    </small>
+
+    <small
+      class="error"
+      *ngIf="confirmPassword.value.length > 0 && !doPasswordsMatch(password.value, confirmPassword.value)"
+    >
+      Passwords do not match.
+    </small>
+
+    <button type="submit">
+      Sign Up
+    </button>
+
+  </form>
+</div>

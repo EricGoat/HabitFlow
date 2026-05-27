@@ -1,0 +1,87 @@
+.signup-container {
+  width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.signup-container h1 {
+  margin-bottom: 25px;
+  font-size: 32px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signup-form input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.signup-form input:focus {
+  border: 1px solid #007bff;
+}
+
+.signup-form button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.signup-form button:hover {
+  background-color: #0056b3;
+}
+
+.invalid {
+  border: 2px solid red !important;
+}
+
+.valid {
+  border: 2px solid green !important;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: left;
+  margin-top: -10px;
+  margin-bottom: -5px;
+}
+
+.hint {
+  color: #666;
+  font-size: 13px;
+  text-align: left;
+  margin-top: -10px;
+  margin-bottom: -5px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.checkmark {
+  font-size: 18px;
+  color: green;
+}
