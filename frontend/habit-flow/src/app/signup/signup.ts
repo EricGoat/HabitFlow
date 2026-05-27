@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,6 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './signup.css',
 })
 export class Signup {
+
+  constructor(private authService: AuthService) {}
 
   errors: string[] = [];
 
@@ -74,6 +77,20 @@ export class Signup {
       return;
     }
 
-    alert('Signup successful!');
+    const userData = {
+      username: username,
+      email: email,
+      password: password
+    }
+
+    this.authService.register(userData).subscribe({
+      next: (response) => {
+        alert('Signup successful!');
+      },
+      error: (error) => {
+        alert(error)
+      }
+    })
+
   }
 }
