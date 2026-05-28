@@ -13,3 +13,12 @@ Develop branch will be merged into master at the end of a 2 week sprint.
 ``python manage.py runserver``
 2. Another terminal navigate to frontend/habit-flow
 ``ng serve``
+
+## Clear Local Database
+```python manage.py shell```
+
+```
+from django.contrib.auth.models import User
+
+User.objects.all().delete()`
+```
