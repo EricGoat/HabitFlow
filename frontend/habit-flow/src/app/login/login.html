@@ -1,0 +1,50 @@
+<div class="form-page">
+
+    <div class="form-card">
+
+        <h1 class="form-title">
+            Login
+        </h1>
+
+        <div class="form-group">
+            <label class="form-label">
+                Username
+            </label>
+
+            <input
+                class="form-input"
+                type="text"
+                [(ngModel)]="username"
+            >
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">
+                Password
+            </label>
+
+            <input
+                class="form-input"
+                type="password"
+                [(ngModel)]="password"
+            >
+        </div>
+
+        <button
+            class="form-button"
+            (click)="login()"
+        >
+            Login
+        </button>
+
+    </div>
+
+  <p *ngIf="response" class="form-error">
+    {{ response }}
+  </p>
+
+  <p *ngIf="response" class="form-success">
+    {{ response }}
+  </p>
+
+</div>
