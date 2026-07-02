@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global page styling */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #4facfe 0%, #43e97b 100%);
+  min-height: 100vh;
+}

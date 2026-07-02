@@ -1,6 +1,19 @@
 <div class="signup-container">
+
+  <!-- Display toast notifications -->
+  <div
+    class="notification"
+    *ngIf="notificationMessage"
+    [class.success-notification]="notificationType === 'success'"
+    [class.error-notification]="notificationType === 'error'"
+  >
+    {{ notificationMessage }}
+  </div>
+
+  <!-- Signup page heading -->
   <h1>Create Account</h1>
 
+  <!-- Signup form -->
   <form
     class="signup-form"
     (ngSubmit)="onSubmit(username.value, email.value, password.value, confirmPassword.value)"
@@ -96,7 +109,7 @@
       Invalid password.
     </small>
 
-    <!-- Confirm Password -->
+    <!-- Confirm password -->
     <div class="input-row">
       <input
         #confirmPassword
@@ -126,9 +139,11 @@
       Passwords do not match.
     </small>
 
+    <!-- Submit the signup form -->
     <button type="submit">
       Sign Up
     </button>
 
   </form>
+
 </div>

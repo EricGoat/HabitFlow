@@ -1,0 +1,181 @@
+<div class="dashboard-page">
+
+  <!-- Display toast notifications -->
+  <div
+    class="notification"
+    *ngIf="notificationMessage"
+    [class.success-notification]="notificationType === 'success'"
+    [class.error-notification]="notificationType === 'error'"
+  >
+    {{ notificationMessage }}
+  </div>
+
+  <!-- Main dashboard container -->
+  <div class="dashboard-card">
+
+    <!-- Dashboard heading -->
+    <h1>Today's Habits</h1>
+
+    <!-- List of the user's habits -->
+    <div class="habit-list">
+
+      <div
+        class="habit-card"
+        [class.completed-habit]="habit.completed"
+        *ngFor="let habit of habits"
+      >
+
+        <!-- Habit information -->
+        <div>
+          <h2>{{ habit.title }}</h2>
+          <p>{{ habit.description }}</p>
+          <p class="streak">🔥 Streak: {{ habit.streak }} days</p>
+        </div>
+
+        <!-- Habit action buttons -->
+        <div class="habit-actions">
+
+          <!-- Mark a habit as complete or undo completion -->
+          <button
+            type="button"
+            class="complete-button"
+            [class.completed-button]="habit.completed"
+            (click)="toggleCompleted(habit)"
+          >
+            {{ habit.completed ? 'Completed' : 'Complete' }}
+          </button>
+
+          <!-- Open the delete confirmation dialog -->
+          <button
+            type="button"
+            class="delete-button"
+            (click)="openDeleteModal(habit)"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Add Habit button -->
+    <div class="button-container">
+
+      <button
+        type="button"
+        class="add-button"
+        (click)="toggleAddHabit()"
+      >
+        {{ showAddHabit ? 'Close' : 'Add Habit' }}
+      </button>
+
+    </div>
+
+    <!-- Add habit section -->
+    <div *ngIf="showAddHabit">
+
+      <!-- Suggested habits -->
+      <h2 class="section-title">Suggested Habits</h2>
+
+      <div class="suggested-list">
+
+        <div
+          class="suggested-card"
+          *ngFor="let habit of suggestedHabits"
+        >
+
+          <!-- Suggested habit information -->
+          <div>
+            <h3>{{ habit.title }}</h3>
+            <p>{{ habit.description }}</p>
+          </div>
+
+          <!-- Add a suggested habit -->
+          <button
+            type="button"
+            class="suggest-button"
+            (click)="addSuggestedHabit(habit)"
+          >
+            Add
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Custom habit form -->
+      <h2 class="section-title">Create Your Own Habit</h2>
+
+      <div class="custom-form">
+
+        <!-- Habit title -->
+        <input
+          type="text"
+          placeholder="Habit Name"
+          [(ngModel)]="customTitle"
+        >
+
+        <!-- Habit description -->
+        <textarea
+          rows="3"
+          placeholder="Description (optional)"
+          [(ngModel)]="customDescription"
+        ></textarea>
+
+        <!-- Create a custom habit -->
+        <button
+          type="button"
+          class="create-button"
+          (click)="addCustomHabit()"
+        >
+          Create Habit
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Delete confirmation modal -->
+  <div class="modal-overlay" *ngIf="showDeleteModal">
+
+    <div class="delete-modal">
+
+      <h2>Remove Habit?</h2>
+
+      <p>
+        Are you sure you want to remove
+        <strong>{{ habitToDelete?.title }}</strong>?
+      </p>
+
+      <!-- Delete confirmation buttons -->
+      <div class="modal-buttons">
+
+        <!-- Cancel deletion -->
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="closeDeleteModal()"
+        >
+          Cancel
+        </button>
+
+        <!-- Confirm deletion -->
+        <button
+          type="button"
+          class="confirm-delete-button"
+          (click)="confirmDeleteHabit()"
+        >
+          Remove
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
