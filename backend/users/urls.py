@@ -5,6 +5,7 @@ from django.urls import path
 from .views import (
     RegisterView,
     LoginView,
+    ProfileView,
     HabitListCreateView,
     HabitCompleteView,
     HabitDeleteView,
@@ -29,6 +30,13 @@ urlpatterns = [
         'login/',
         LoginView.as_view(),
         name='login'
+    ),
+
+    # Retrieve and update the logged-in user's profile
+    path(
+        'profile/',
+        ProfileView.as_view(),
+        name='profile'
     ),
 
     # -------------------------

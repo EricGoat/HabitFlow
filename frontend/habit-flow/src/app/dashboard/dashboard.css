@@ -320,3 +320,45 @@
 .confirm-delete-button {
   background: linear-gradient(135deg, #ff5c5c, #d7263d);
 }
+
+/* Profile button displayed in the top-right corner */
+.profile-button {
+
+  /* Position the button */
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
+  /* Remove default button styling */
+  background: transparent;
+  border: none;
+  padding: 0;
+
+  /* Show pointer when hovering */
+  cursor: pointer;
+
+  /* Keep the button above all dashboard elements */
+  z-index: 1001;
+
+  /* Smooth hover animation */
+  transition: transform 0.2s ease;
+}
+
+/* Slightly enlarge the button when hovered */
+.profile-button:hover {
+  transform: scale(1.08);
+}
+
+/* Profile icon */
+.profile-icon {
+
+  /* Set the icon size */
+  width: 70px;
+  height: 70px;
+
+  /* Maintain the correct aspect ratio */
+  object-fit: contain;
+
+  /* Remove extra spacing */
+  display: block;
+}

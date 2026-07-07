@@ -59,7 +59,12 @@ export class Signup {
   // Validate the password
   isPasswordValid(password: string): boolean {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).+$/;
-    return passwordRegex.test(password) && !password.includes(' ');
+
+    return (
+      password.length >= 5 &&
+      passwordRegex.test(password) &&
+      !password.includes(' ')
+    );
   }
 
   // Verify that both passwords match
@@ -101,7 +106,7 @@ export class Signup {
     // Validate the password
     if (!this.isPasswordValid(password)) {
       this.errors.push(
-        'Password must contain an uppercase letter, a number, and no spaces.'
+        'Password must be at least 5 characters long, contain an uppercase letter, a number, and no spaces.'
       );
     }
 

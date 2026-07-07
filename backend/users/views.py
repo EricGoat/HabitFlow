@@ -15,7 +15,7 @@ from rest_framework.views import APIView
 
 # Import project models and serializers
 from .models import Habit
-from .serializers import RegisterSerializer, HabitSerializer
+from .serializers import RegisterSerializer, ProfileSerializer, HabitSerializer
 
 
 # Handles user registration
@@ -57,6 +57,47 @@ class LoginView(APIView):
         return Response(
             {'error': 'Invalid credentials'},
             status=status.HTTP_401_UNAUTHORIZED
+        )
+
+
+# Handles retrieving and updating the logged-in user's profile
+class ProfileView(APIView):
+
+    # Require authentication
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    # Return the logged-in user's profile information
+    def get(self, request):
+        serializer = ProfileSerializer(request.user)
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
+
+    # Update the logged-in user's profile information
+    def put(self, request):
+        serializer = ProfileSerializer(
+            request.user,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(
+                {
+                    'message': 'Profile updated successfully',
+                    'user': serializer.data
+                },
+                status=status.HTTP_200_OK
+            )
+
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
         )
 
 

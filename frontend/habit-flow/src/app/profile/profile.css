@@ -1,0 +1,354 @@
+/* Main profile page container */
+.profile-page {
+
+    /* Fill the entire screen */
+    min-height: 100vh;
+
+    /* Center the profile card */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Set the profile page background image */
+    background-image: url('/profile-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Add spacing around the page */
+    padding: 40px;
+}
+
+/* Toast notification */
+.notification {
+
+    /* Position notification at the top of the screen */
+    position: fixed;
+    top: 20px;
+
+    /* Center the notification horizontally */
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Add spacing inside the notification */
+    padding: 12px 20px;
+
+    /* Round the notification corners */
+    border-radius: 10px;
+
+    /* Make notification text bold */
+    font-weight: bold;
+
+    /* Keep notification above other elements */
+    z-index: 1000;
+
+    /* Add shadow for depth */
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+}
+
+/* Success notification */
+.success-notification {
+
+    /* Green background for success messages */
+    background: #22c55e;
+
+    /* White text */
+    color: white;
+}
+
+/* Error notification */
+.error-notification {
+
+    /* Red background for error messages */
+    background: #ef4444;
+
+    /* White text */
+    color: white;
+}
+
+/* Glassmorphism profile card */
+.profile-card {
+
+    /* Set card width */
+    width: 520px;
+
+    /* Apply glass blur effect */
+    backdrop-filter: blur(18px);
+
+    /* Semi-transparent dark background */
+    background: rgba(20, 40, 60, 0.38);
+
+    /* Light border around the card */
+    border: 1px solid rgba(255,255,255,.35);
+
+    /* Round the corners */
+    border-radius: 22px;
+
+    /* Inner spacing */
+    padding: 32px;
+
+    /* White text */
+    color: white;
+
+    /* Add shadow for depth */
+    box-shadow: 0 18px 45px rgba(0,0,0,.35);
+}
+
+/* Return to dashboard button */
+.back-button {
+
+    /* Transparent background */
+    background: transparent;
+
+    /* Remove the default button border */
+    border: none;
+
+    /* White text */
+    color: white;
+
+    /* Slightly larger text */
+    font-size: 14px;
+
+    /* Make the text bold */
+    font-weight: bold;
+
+    /* Show pointer cursor on hover */
+    cursor: pointer;
+
+    /* Align the button to the left */
+    display: block;
+
+    /* Space below the button */
+    margin-bottom: 22px;
+
+    /* Remove default padding */
+    padding: 0;
+
+    /* Slight transparency */
+    opacity: .9;
+
+    /* Smooth hover animation */
+    transition: .2s;
+}
+
+/* Back button hover effect */
+.back-button:hover {
+
+    /* Fully show the button */
+    opacity: 1;
+
+    /* Move slightly left */
+    transform: translateX(-3px);
+}
+
+/* Profile page heading */
+.profile-card h1 {
+
+    /* Center the heading */
+    text-align: center;
+
+    /* Space below heading */
+    margin-bottom: 8px;
+
+    /* Large heading */
+    font-size: 42px;
+
+    /* Keep line height tight */
+    line-height: 1.1;
+}
+
+/* Subtitle beneath the heading */
+.subtitle {
+
+    /* Center the text */
+    text-align: center;
+
+    /* Space below subtitle */
+    margin-bottom: 26px;
+
+    /* Slight transparency */
+    opacity: .85;
+
+    /* Subtitle size */
+    font-size: 17px;
+}
+
+/* Section spacing */
+.current-info-section,
+.edit-info-section,
+.password-section {
+
+    /* Add spacing above each section */
+    margin-top: 22px;
+}
+
+/* Section headings */
+.current-info-section h2,
+.edit-info-section h2,
+.password-section h2 {
+
+    /* Heading size */
+    font-size: 18px;
+
+    /* Space below heading */
+    margin-bottom: 14px;
+
+    /* Keep headings white */
+    color: white;
+}
+
+/* Current account info row */
+.info-row {
+
+    /* Arrange label and value horizontally */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Add spacing inside the row */
+    padding: 12px 14px;
+
+    /* Space between rows */
+    margin-bottom: 10px;
+
+    /* Soft transparent background */
+    background: rgba(255,255,255,.16);
+
+    /* Rounded corners */
+    border-radius: 12px;
+
+    /* Light border */
+    border: 1px solid rgba(255,255,255,.25);
+}
+
+/* Current account info label */
+.info-label {
+
+    /* Bold label */
+    font-weight: bold;
+
+    /* Slight transparency */
+    opacity: .85;
+}
+
+/* Current account info value */
+.info-value {
+
+    /* Make current info stand out */
+    font-weight: 600;
+
+    /* Align text to the right */
+    text-align: right;
+}
+
+/* Container for each input field */
+.input-group {
+
+    /* Stack label and input */
+    display: flex;
+    flex-direction: column;
+
+    /* Space between input groups */
+    margin-bottom: 16px;
+}
+
+/* Labels above each input */
+.input-group label {
+
+    /* Space between label and input */
+    margin-bottom: 6px;
+
+    /* Make labels bold */
+    font-weight: 700;
+
+    /* Label size */
+    font-size: 16px;
+}
+
+/* Text input fields */
+.input-group input {
+
+    /* Inner spacing */
+    padding: 12px 14px;
+
+    /* Rounded corners */
+    border-radius: 12px;
+
+    /* Border used for focus state */
+    border: 2px solid transparent;
+
+    /* Remove focus outline */
+    outline: none;
+
+    /* Increase text size */
+    font-size: 15px;
+
+    /* Light input background */
+    background: rgba(255,255,255,.92);
+
+    /* Dark input text */
+    color: #111827;
+
+    /* Smooth focus animation */
+    transition: .2s;
+}
+
+/* Input focus effect */
+.input-group input:focus {
+
+    /* Blue border on focus */
+    border-color: #60a5fa;
+
+    /* Soft blue glow */
+    box-shadow: 0 0 0 3px rgba(96,165,250,.35);
+}
+
+/* Save Changes button */
+.save-button {
+
+    /* Stretch button across the card */
+    width: 100%;
+
+    /* Space above button */
+    margin-top: 18px;
+
+    /* Button padding */
+    padding: 14px;
+
+    /* Remove default border */
+    border: none;
+
+    /* Round button corners */
+    border-radius: 14px;
+
+    /* Change cursor on hover */
+    cursor: pointer;
+
+    /* Button text size */
+    font-size: 17px;
+
+    /* Bold text */
+    font-weight: bold;
+
+    /* White text color */
+    color: white;
+
+    /* Blue gradient background */
+    background: linear-gradient(135deg, #60a5fa, #2563eb);
+
+    /* Smooth hover animation */
+    transition: .2s;
+
+    /* Button shadow */
+    box-shadow: 0 8px 20px rgba(37,99,235,.35);
+}
+
+/* Button hover effect */
+.save-button:hover {
+
+    /* Lift the button slightly */
+    transform: translateY(-2px);
+
+    /* Increase shadow on hover */
+    box-shadow: 0 12px 25px rgba(37,99,235,.45);
+}

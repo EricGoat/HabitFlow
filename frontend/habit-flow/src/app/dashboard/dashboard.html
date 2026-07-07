@@ -1,5 +1,20 @@
 <div class="dashboard-page">
 
+  <!-- Navigate to the profile page -->
+  <button
+    type="button"
+    class="profile-button"
+    (click)="goToProfile()"
+    aria-label="Profile"
+  >
+    <!-- Profile icon -->
+    <img
+      src="/profile-icon.png"
+      alt="Profile"
+      class="profile-icon"
+    >
+  </button>
+
   <!-- Display toast notifications -->
   <div
     class="notification"
@@ -19,6 +34,7 @@
     <!-- List of the user's habits -->
     <div class="habit-list">
 
+      <!-- Individual habit card -->
       <div
         class="habit-card"
         [class.completed-habit]="habit.completed"
@@ -81,6 +97,7 @@
 
       <div class="suggested-list">
 
+        <!-- Individual suggested habit -->
         <div
           class="suggested-card"
           *ngFor="let habit of suggestedHabits"
@@ -144,8 +161,10 @@
 
     <div class="delete-modal">
 
+      <!-- Confirmation heading -->
       <h2>Remove Habit?</h2>
 
+      <!-- Confirmation message -->
       <p>
         Are you sure you want to remove
         <strong>{{ habitToDelete?.title }}</strong>?

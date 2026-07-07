@@ -5,6 +5,9 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+// Import Angular router for page navigation
+import { Router } from '@angular/router';
+
 // Import the habit service
 import { HabitService } from '../services/habit.service';
 
@@ -62,12 +65,18 @@ export class Dashboard implements OnInit {
 
   constructor(
     private habitService: HabitService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   // Load the user's habits when the dashboard opens
   ngOnInit() {
     this.loadHabits();
+  }
+
+  // Navigate to the profile page
+  goToProfile() {
+    this.router.navigate(['/profile']);
   }
 
   // Display a temporary notification

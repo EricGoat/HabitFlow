@@ -1,0 +1,133 @@
+<!-- Profile page background -->
+<div class="profile-page">
+
+  <!-- Display toast notifications -->
+  <div
+    class="notification"
+    *ngIf="notificationMessage"
+    [class.success-notification]="notificationType === 'success'"
+    [class.error-notification]="notificationType === 'error'"
+  >
+    {{ notificationMessage }}
+  </div>
+
+  <!-- Glassmorphism profile card -->
+  <div class="profile-card">
+
+    <!-- Return to the dashboard -->
+    <button
+      class="back-button"
+      type="button"
+      (click)="goToDashboard()">
+
+      ← Back to Dashboard
+
+    </button>
+
+    <!-- Page title -->
+    <h1>My Profile</h1>
+
+    <!-- Page description -->
+    <p class="subtitle">
+      View and update your account information below.
+    </p>
+
+    <!-- Current account information section -->
+    <div class="current-info-section">
+
+      <!-- Current information heading -->
+      <h2>Current Account Info</h2>
+
+      <!-- Current username display -->
+      <div class="info-row">
+        <span class="info-label">Username</span>
+        <span class="info-value">{{ currentUsername }}</span>
+      </div>
+
+      <!-- Current email display -->
+      <div class="info-row">
+        <span class="info-label">Email</span>
+        <span class="info-value">{{ currentEmail }}</span>
+      </div>
+
+    </div>
+
+    <!-- Edit account information section -->
+    <div class="edit-info-section">
+
+      <!-- Edit information heading -->
+      <h2>Edit Account Info</h2>
+
+      <!-- Username input -->
+      <div class="input-group">
+        <label>New Username</label>
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          placeholder="Enter new username">
+      </div>
+
+      <!-- Email input -->
+      <div class="input-group">
+        <label>New Email</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter new email">
+      </div>
+
+    </div>
+
+    <!-- Password change section -->
+    <div class="password-section">
+
+      <!-- Password section heading -->
+      <h2>Change Password</h2>
+
+      <!-- Current password input -->
+      <div class="input-group">
+        <label>Current Password</label>
+        <input
+          type="password"
+          name="currentPassword"
+          [(ngModel)]="currentPassword"
+          placeholder="Current password">
+      </div>
+
+      <!-- New password input -->
+      <div class="input-group">
+        <label>New Password</label>
+        <input
+          type="password"
+          name="newPassword"
+          [(ngModel)]="newPassword"
+          placeholder="New password">
+      </div>
+
+      <!-- Confirm new password input -->
+      <div class="input-group">
+        <label>Confirm New Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          placeholder="Confirm new password">
+      </div>
+
+    </div>
+
+    <!-- Save profile changes button -->
+    <button
+      class="save-button"
+      type="button"
+      (click)="saveChanges()">
+
+      Save Changes
+
+    </button>
+
+  </div>
+
+</div>

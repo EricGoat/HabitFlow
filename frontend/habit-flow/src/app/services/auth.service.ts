@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 
 // Import Angular's HTTP client for making API requests
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 // Service responsible for handling user authentication
@@ -30,6 +30,39 @@ export class AuthService {
     return this.http.post(
       `${this.apiUrl}/login/`,
       credentials
+    );
+  }
+
+  // Get the saved authentication token
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  // Create authorization headers using the saved token
+  getAuthHeaders() {
+    const token = this.getToken();
+
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Token ${token}`
+      })
+    };
+  }
+
+  // Retrieve the logged-in user's profile
+  getProfile() {
+    return this.http.get(
+      `${this.apiUrl}/profile/`,
+      this.getAuthHeaders()
+    );
+  }
+
+  // Update the logged-in user's profile
+  updateProfile(profileData: any) {
+    return this.http.put(
+      `${this.apiUrl}/profile/`,
+      profileData,
+      this.getAuthHeaders()
     );
   }
 }
