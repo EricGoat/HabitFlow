@@ -148,6 +148,29 @@
   color: #102018;
 }
 
+/* Edit button */
+.edit-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #71b7e7, #0b4fff);
+
+  transition: all 0.25s ease;
+}
+
+/* Edit button hover effect */
+.edit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(11, 79, 255, 0.35);
+}
+
 /* Delete button */
 .delete-button {
   padding: 10px 18px;
@@ -290,6 +313,45 @@
 .delete-modal p {
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: 28px;
+}
+
+/* Edit habit form fields inside the modal */
+.delete-modal input,
+.delete-modal textarea {
+  width: 100%;
+  margin-bottom: 18px;
+
+  padding: 14px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  text-align: left;
+}
+
+/* Placeholder text for edit habit fields */
+.delete-modal input::placeholder,
+.delete-modal textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus effect for edit habit fields */
+.delete-modal input:focus,
+.delete-modal textarea:focus {
+  border: 1px solid #71e783;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Allow the edit description box to be resized vertically */
+.delete-modal textarea {
+  resize: vertical;
+  min-height: 90px;
 }
 
 /* Container for modal buttons */

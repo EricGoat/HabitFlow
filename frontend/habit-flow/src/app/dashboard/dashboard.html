@@ -61,6 +61,15 @@
             {{ habit.completed ? 'Completed' : 'Complete' }}
           </button>
 
+          <!-- Open the edit habit dialog -->
+          <button
+            type="button"
+            class="edit-button"
+            (click)="openEditModal(habit)"
+          >
+            Edit
+          </button>
+
           <!-- Open the delete confirmation dialog -->
           <button
             type="button"
@@ -189,6 +198,55 @@
           (click)="confirmDeleteHabit()"
         >
           Remove
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Edit habit modal -->
+  <div class="modal-overlay" *ngIf="showEditModal">
+
+    <div class="delete-modal">
+
+      <!-- Edit heading -->
+      <h2>Edit Habit</h2>
+
+      <!-- Habit title -->
+      <input
+        type="text"
+        placeholder="Habit Name"
+        [(ngModel)]="editTitle"
+      >
+
+      <!-- Habit description -->
+      <textarea
+        rows="3"
+        placeholder="Description (optional)"
+        [(ngModel)]="editDescription"
+      ></textarea>
+
+      <!-- Edit modal buttons -->
+      <div class="modal-buttons">
+
+        <!-- Cancel editing -->
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="closeEditModal()"
+        >
+          Cancel
+        </button>
+
+        <!-- Save changes -->
+        <button
+          type="button"
+          class="confirm-delete-button"
+          (click)="saveEditHabit()"
+        >
+          Save
         </button>
 
       </div>

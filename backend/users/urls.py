@@ -8,6 +8,7 @@ from .views import (
     ProfileView,
     HabitListCreateView,
     HabitCompleteView,
+    HabitUpdateView,
     HabitDeleteView,
 )
 
@@ -55,6 +56,13 @@ urlpatterns = [
         'habits/<int:habit_id>/complete/',
         HabitCompleteView.as_view(),
         name='complete-habit'
+    ),
+
+    # Update a habit's title and/or description
+    path(
+        'habits/<int:habit_id>/update/',
+        HabitUpdateView.as_view(),
+        name='update-habit'
     ),
 
     # Soft delete a habit

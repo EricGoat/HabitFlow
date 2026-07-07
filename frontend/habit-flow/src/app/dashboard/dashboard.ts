@@ -39,6 +39,12 @@ export class Dashboard implements OnInit {
   showDeleteModal: boolean = false;
   habitToDelete: any = null;
 
+  // Controls the edit habit modal
+  showEditModal: boolean = false;
+  habitToEdit: any = null;
+  editTitle: string = '';
+  editDescription: string = '';
+
   // Predefined habits that users can quickly add
   suggestedHabits = [
     {
@@ -187,6 +193,54 @@ export class Dashboard implements OnInit {
     this.habitToDelete = null;
     this.showDeleteModal = false;
     this.changeDetectorRef.detectChanges();
+  }
+
+  // Open the edit habit dialog
+  openEditModal(habit: any) {
+    this.habitToEdit = habit;
+    this.editTitle = habit.title;
+    this.editDescription = habit.description;
+    this.showEditModal = true;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  // Close the edit habit dialog
+  closeEditModal() {
+    this.habitToEdit = null;
+    this.editTitle = '';
+    this.editDescription = '';
+    this.showEditModal = false;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  // Save changes to the edited habit
+  saveEditHabit() {
+
+    // Ensure a habit title has been entered
+    if (!this.editTitle.trim()) {
+      this.showNotification('Please enter a habit title.', 'error');
+      return;
+    }
+
+    this.habitService.updateHabit(this.habitToEdit.id, {
+      title: this.editTitle,
+      description: this.editDescription
+    }).subscribe({
+      next: (updatedHabit: any) => {
+
+        // Replace the updated habit in the local list
+        this.habits = this.habits.map(currentHabit =>
+          currentHabit.id === updatedHabit.id ? updatedHabit : currentHabit
+        );
+
+        this.showNotification('Habit updated successfully.', 'success');
+        this.closeEditModal();
+        this.changeDetectorRef.detectChanges();
+      },
+      error: () => {
+        this.showNotification('That habit already exists.', 'error');
+      }
+    });
   }
 
   // Remove the selected habit

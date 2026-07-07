@@ -62,6 +62,17 @@ export class HabitService {
     );
   }
 
+  // Update a habit's title and/or description
+  updateHabit(id: number, habit: any): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}/habits/${id}/update/`,
+      habit,
+      {
+        headers: this.getHeaders()
+      }
+    );
+  }
+
   // Soft delete a habit
   deleteHabit(id: number): Observable<any> {
     return this.http.delete(

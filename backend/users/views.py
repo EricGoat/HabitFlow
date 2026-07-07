@@ -275,6 +275,67 @@ class HabitCompleteView(APIView):
         )
 
 
+# Handles updating a habit's title and description
+class HabitUpdateView(APIView):
+
+    # Require authentication
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    # Update the title and/or description of a habit
+    def put(self, request, habit_id):
+
+        try:
+            habit = Habit.objects.get(
+                id=habit_id,
+                user=request.user,
+                active=True
+            )
+
+        except Habit.DoesNotExist:
+            return Response(
+                {'error': 'Habit not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Remove leading and trailing spaces from the title
+        title = request.data.get('title', '').strip()
+
+        if not title:
+            return Response(
+                {'error': 'Habit title is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Prevent renaming to another active habit's title (case-insensitive)
+        duplicate = Habit.objects.filter(
+            user=request.user,
+            title__iexact=title,
+            active=True
+        ).exclude(id=habit_id).exists()
+
+        if duplicate:
+            return Response(
+                {'error': 'You already have this habit'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = HabitSerializer(habit, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK
+            )
+
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+
 # Handles soft deletion of habits
 class HabitDeleteView(APIView):
 
