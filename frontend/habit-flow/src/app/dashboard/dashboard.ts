@@ -31,6 +31,10 @@ export class Dashboard implements OnInit {
   // Stores all active habits for the logged-in user
   habits: any[] = [];
 
+  // Circle progress values
+  progressCircleRadius: number = 45;
+  progressCircleCircumference: number = 2 * Math.PI * this.progressCircleRadius;
+
   // Stores notification information
   notificationMessage: string = '';
   notificationType: string = '';
@@ -83,6 +87,24 @@ export class Dashboard implements OnInit {
   // Navigate to the profile page
   goToProfile() {
     this.router.navigate(['/profile']);
+  }
+
+  // Number of habits completed today
+  get completedHabitCount() {
+    return this.habits.filter(habit => habit.completed).length;
+  }
+
+  // Completion percentage for the circular progress bar
+  get completionPercentage() {
+    return this.habits.length
+      ? Math.round((this.completedHabitCount / this.habits.length) * 100)
+      : 0;
+  }
+
+  // Stroke offset used to fill the progress circle
+  get progressCircleOffset() {
+    return this.progressCircleCircumference
+      - (this.completionPercentage / 100) * this.progressCircleCircumference;
   }
 
   // Display a temporary notification

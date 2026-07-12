@@ -31,6 +31,54 @@
     <!-- Dashboard heading -->
     <h1>Today's Habits</h1>
 
+    <!-- Habit completion progress -->
+    <div class="progress-summary">
+      <div class="progress-circle">
+        <svg
+          viewBox="0 0 110 110"
+          aria-label="Habit completion progress"
+        >
+          <defs>
+            <linearGradient
+              id="progressGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stop-color="#71e783"
+              ></stop>
+              <stop
+                offset="100%"
+                stop-color="#0b8cff"
+              ></stop>
+            </linearGradient>
+          </defs>
+          <circle
+            class="progress-track"
+            cx="55"
+            cy="55"
+            [attr.r]="progressCircleRadius"
+          ></circle>
+          <circle
+            class="progress-fill"
+            cx="55"
+            cy="55"
+            [attr.r]="progressCircleRadius"
+            [attr.stroke-dasharray]="progressCircleCircumference"
+            [attr.stroke-dashoffset]="progressCircleOffset"
+          ></circle>
+        </svg>
+        <div class="progress-text">
+          <strong>{{ completionPercentage }}%</strong>
+          <span>{{ completedHabitCount }}/{{ habits.length }}</span>
+        </div>
+      </div>
+      <p>Habits completed today</p>
+    </div>
+
     <!-- List of the user's habits -->
     <div class="habit-list">
 
