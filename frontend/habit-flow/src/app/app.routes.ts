@@ -6,7 +6,7 @@ import { Home } from './home/home';
 import { Signup } from './signup/signup';
 import { Login } from './login/login';
 import { Dashboard } from './dashboard/dashboard';
-//import { Mission } from './mission/mission';
+import { Mission } from './mission/mission';
 import { ProfileComponent } from './profile/profile';
 
 // Define the application's routes
@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'signup', component: Signup },
 
   // Mission page
- // { path: 'mission', component: Mission },
+  { path: 'mission', component: Mission },
 
   // User dashboard
   { path: 'dashboard', component: Dashboard },

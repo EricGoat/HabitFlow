@@ -10,6 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+    position: relative;
 }
 
 /* Glassmorphism content container */
@@ -105,4 +107,33 @@
     transform: translateY(-4px);
 
     background: rgba(255, 255, 255, 0.18);
+}
+
+/* Mission button container */
+.mission-button-container {
+    position: absolute;
+    left: 50%;
+    top: 735px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* Mission button */
+.mission-button {
+    width: 220px;
+    text-align: center;
+    color: white;
+    border: 2px solid rgba(113, 231, 131, 0.9);
+    background: rgba(113, 231, 131, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Mission button hover effect */
+.mission-button:hover {
+    transform: translateY(-4px);
+    background: rgba(113, 231, 131, 0.24);
+    box-shadow: 0 16px 30px rgba(0, 140, 255, 0.25);
 }
