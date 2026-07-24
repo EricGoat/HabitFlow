@@ -1,6 +1,9 @@
 // Import Angular routing types
 import { Routes } from '@angular/router';
 
+// Import the authentication route guard
+import { authGuard } from './auth.guard';
+
 // Import application pages
 import { Home } from './home/home';
 import { Signup } from './signup/signup';
@@ -25,10 +28,18 @@ export const routes: Routes = [
   { path: 'mission', component: Mission },
 
   // User dashboard
-  { path: 'dashboard', component: Dashboard },
+  {
+    path: 'dashboard',
+    component: Dashboard,
+    canActivate: [authGuard]
+  },
 
   // User profile
-  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [authGuard]
+  },
 
   // Redirect unknown routes back home
   { path: '**', redirectTo: '' }

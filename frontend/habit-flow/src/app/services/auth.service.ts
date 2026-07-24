@@ -38,6 +38,11 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  // Remove the saved authentication token
+  logout() {
+    localStorage.removeItem('token');
+  }
+
   // Create authorization headers using the saved token
   getAuthHeaders() {
     const token = this.getToken();

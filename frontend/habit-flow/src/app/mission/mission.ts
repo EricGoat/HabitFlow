@@ -7,4 +7,11 @@ import { RouterModule } from '@angular/router';
   templateUrl: './mission.html',
   styleUrl: './mission.css',
 })
-export class Mission {}
+export class Mission {
+
+  // Return to the previous page
+  goBack() {
+    window.history.back();
+  }
+
+}

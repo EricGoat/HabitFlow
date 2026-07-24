@@ -113,7 +113,7 @@
 .mission-button-container {
     position: absolute;
     left: 50%;
-    top: 735px;
+    top: 799px;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;

@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 // Import the habit service
 import { HabitService } from '../services/habit.service';
 
+// Import the authentication service
+import { AuthService } from '../services/auth.service';
+
 
 // Handles the main dashboard and habit management
 @Component({
@@ -75,6 +78,7 @@ export class Dashboard implements OnInit {
 
   constructor(
     private habitService: HabitService,
+    private authService: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
     private router: Router
   ) {}
@@ -87,6 +91,17 @@ export class Dashboard implements OnInit {
   // Navigate to the profile page
   goToProfile() {
     this.router.navigate(['/profile']);
+  }
+
+// Navigate to the mission page
+goToMission() {
+  this.router.navigate(['/mission']);
+}
+
+  // Sign out and return to the home page
+  signOut() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   // Number of habits completed today

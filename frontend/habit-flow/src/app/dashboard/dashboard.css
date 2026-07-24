@@ -473,6 +473,78 @@
   transition: transform 0.2s ease;
 }
 
+/* Mission button displayed below the profile button */
+.mission-button {
+
+  /* Position the button */
+  position: fixed;
+  top: 105px;
+  right: 17px;
+
+  /* Button styling */
+  width: 100px;
+  padding: 8px 0;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #71e783, #0b8cff);
+
+  /* Keep the button above all dashboard elements */
+  z-index: 1001;
+
+  /* Smooth hover animation */
+  transition: all 0.2s ease;
+}
+
+/* Mission button hover effect */
+.mission-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(11, 140, 255, 0.35);
+}
+
+/* Sign out button displayed below the profile button */
+.sign-out-button {
+
+  /* Position the button */
+  position: fixed;
+  top: 146px;
+  right: 30px;
+
+  /* Button styling */
+  width: 70px;
+  padding: 8px 0;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #ff5c5c, #d7263d);
+
+  /* Keep the button above all dashboard elements */
+  z-index: 1001;
+
+  /* Smooth hover animation */
+  transition: all 0.2s ease;
+}
+
+/* Sign out button hover effect */
+.sign-out-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(215, 38, 61, 0.35);
+}
+
 /* Slightly enlarge the button when hovered */
 .profile-button:hover {
   transform: scale(1.08);
