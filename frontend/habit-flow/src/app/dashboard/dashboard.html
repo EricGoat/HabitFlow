@@ -1,0 +1,324 @@
+<div class="dashboard-page">
+
+  <!-- Navigate to the profile page -->
+  <button
+    type="button"
+    class="profile-button"
+    (click)="goToProfile()"
+    aria-label="Profile"
+  >
+    <!-- Profile icon -->
+    <img
+      src="/profile-icon.png"
+      alt="Profile"
+      class="profile-icon"
+    >
+  </button>
+
+    <!-- Navigate to the mission page -->
+  <button
+    type="button"
+    class="mission-button"
+    (click)="goToMission()"
+  >
+    Mission Page
+  </button>
+
+  <!-- Sign out of the application -->
+  <button
+    type="button"
+    class="sign-out-button"
+    (click)="signOut()"
+  >
+    Sign Out
+  </button>
+
+  <!-- Display toast notifications -->
+  <div
+    class="notification"
+    *ngIf="notificationMessage"
+    [class.success-notification]="notificationType === 'success'"
+    [class.error-notification]="notificationType === 'error'"
+  >
+    {{ notificationMessage }}
+  </div>
+
+  <!-- Main dashboard container -->
+  <div class="dashboard-card">
+
+    <!-- Dashboard heading -->
+    <h1>Today's Habits</h1>
+
+    <!-- Habit completion progress -->
+    <div class="progress-summary">
+      <div class="progress-circle">
+        <svg
+          viewBox="0 0 110 110"
+          aria-label="Habit completion progress"
+        >
+          <defs>
+            <linearGradient
+              id="progressGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stop-color="#71e783"
+              ></stop>
+              <stop
+                offset="100%"
+                stop-color="#0b8cff"
+              ></stop>
+            </linearGradient>
+          </defs>
+          <circle
+            class="progress-track"
+            cx="55"
+            cy="55"
+            [attr.r]="progressCircleRadius"
+          ></circle>
+          <circle
+            class="progress-fill"
+            cx="55"
+            cy="55"
+            [attr.r]="progressCircleRadius"
+            [attr.stroke-dasharray]="progressCircleCircumference"
+            [attr.stroke-dashoffset]="progressCircleOffset"
+          ></circle>
+        </svg>
+        <div class="progress-text">
+          <strong>{{ completionPercentage }}%</strong>
+          <span>{{ completedHabitCount }}/{{ habits.length }}</span>
+        </div>
+      </div>
+      <p>Habits completed today</p>
+    </div>
+
+    <!-- List of the user's habits -->
+    <div class="habit-list">
+
+      <!-- Individual habit card -->
+      <div
+        class="habit-card"
+        [class.completed-habit]="habit.completed"
+        *ngFor="let habit of habits"
+      >
+
+        <!-- Habit information -->
+        <div>
+          <h2>{{ habit.title }}</h2>
+          <p>{{ habit.description }}</p>
+          <p class="streak">🔥 Streak: {{ habit.streak }} days</p>
+        </div>
+
+        <!-- Habit action buttons -->
+        <div class="habit-actions">
+
+          <!-- Mark a habit as complete or undo completion -->
+          <button
+            type="button"
+            class="complete-button"
+            [class.completed-button]="habit.completed"
+            (click)="toggleCompleted(habit)"
+          >
+            {{ habit.completed ? 'Completed' : 'Complete' }}
+          </button>
+
+          <!-- Open the edit habit dialog -->
+          <button
+            type="button"
+            class="edit-button"
+            (click)="openEditModal(habit)"
+          >
+            Edit
+          </button>
+
+          <!-- Open the delete confirmation dialog -->
+          <button
+            type="button"
+            class="delete-button"
+            (click)="openDeleteModal(habit)"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Add Habit button -->
+    <div class="button-container">
+
+      <button
+        type="button"
+        class="add-button"
+        (click)="toggleAddHabit()"
+      >
+        {{ showAddHabit ? 'Close' : 'Add Habit' }}
+      </button>
+
+    </div>
+
+    <!-- Add habit section -->
+    <div *ngIf="showAddHabit">
+
+      <!-- Suggested habits -->
+      <h2 class="section-title">Suggested Habits</h2>
+
+      <div class="suggested-list">
+
+        <!-- Individual suggested habit -->
+        <div
+          class="suggested-card"
+          *ngFor="let habit of suggestedHabits"
+        >
+
+          <!-- Suggested habit information -->
+          <div>
+            <h3>{{ habit.title }}</h3>
+            <p>{{ habit.description }}</p>
+          </div>
+
+          <!-- Add a suggested habit -->
+          <button
+            type="button"
+            class="suggest-button"
+            (click)="addSuggestedHabit(habit)"
+          >
+            Add
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Custom habit form -->
+      <h2 class="section-title">Create Your Own Habit</h2>
+
+      <div class="custom-form">
+
+        <!-- Habit title -->
+        <input
+          type="text"
+          placeholder="Habit Name"
+          [(ngModel)]="customTitle"
+        >
+
+        <!-- Habit description -->
+        <textarea
+          rows="3"
+          placeholder="Description (optional)"
+          [(ngModel)]="customDescription"
+        ></textarea>
+
+        <!-- Create a custom habit -->
+        <button
+          type="button"
+          class="create-button"
+          (click)="addCustomHabit()"
+        >
+          Create Habit
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Delete confirmation modal -->
+  <div class="modal-overlay" *ngIf="showDeleteModal">
+
+    <div class="delete-modal">
+
+      <!-- Confirmation heading -->
+      <h2>Remove Habit?</h2>
+
+      <!-- Confirmation message -->
+      <p>
+        Are you sure you want to remove
+        <strong>{{ habitToDelete?.title }}</strong>?
+      </p>
+
+      <!-- Delete confirmation buttons -->
+      <div class="modal-buttons">
+
+        <!-- Cancel deletion -->
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="closeDeleteModal()"
+        >
+          Cancel
+        </button>
+
+        <!-- Confirm deletion -->
+        <button
+          type="button"
+          class="confirm-delete-button"
+          (click)="confirmDeleteHabit()"
+        >
+          Remove
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Edit habit modal -->
+  <div class="modal-overlay" *ngIf="showEditModal">
+
+    <div class="delete-modal">
+
+      <!-- Edit heading -->
+      <h2>Edit Habit</h2>
+
+      <!-- Habit title -->
+      <input
+        type="text"
+        placeholder="Habit Name"
+        [(ngModel)]="editTitle"
+      >
+
+      <!-- Habit description -->
+      <textarea
+        rows="3"
+        placeholder="Description (optional)"
+        [(ngModel)]="editDescription"
+      ></textarea>
+
+      <!-- Edit modal buttons -->
+      <div class="modal-buttons">
+
+        <!-- Cancel editing -->
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="closeEditModal()"
+        >
+          Cancel
+        </button>
+
+        <!-- Save changes -->
+        <button
+          type="button"
+          class="confirm-delete-button"
+          (click)="saveEditHabit()"
+        >
+          Save
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

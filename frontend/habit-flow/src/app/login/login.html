@@ -1,0 +1,94 @@
+<div class="signup-container">
+
+  <!-- Login page heading -->
+  <h1>Login</h1>
+
+  <!-- Login form -->
+  <form class="signup-form" (ngSubmit)="login()">
+
+    <!-- Username -->
+    <div class="input-row">
+
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        [(ngModel)]="username"
+        required
+        [class.invalid]="username.length > 0 && username.trim().length === 0"
+        [class.valid]="username.trim().length > 0"
+      />
+
+      <!-- Display a checkmark when the username is valid -->
+      <span
+        class="checkmark"
+        *ngIf="username.trim().length > 0"
+      >
+        ✅
+      </span>
+
+    </div>
+
+    <!-- Username hint -->
+    <small class="hint">
+      Enter your username.
+    </small>
+
+    <!-- Password -->
+    <div class="input-row">
+
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        required
+        [class.invalid]="password.length > 0 && password.trim().length === 0"
+        [class.valid]="password.trim().length > 0"
+      />
+
+      <!-- Display a checkmark when the password field is not empty -->
+      <span
+        class="checkmark"
+        *ngIf="password.trim().length > 0"
+      >
+        ✅
+      </span>
+
+    </div>
+
+    <!-- Password hint -->
+    <small class="hint">
+      Enter your password.
+    </small>
+
+    <!-- Submit the login form -->
+    <button type="submit">
+      Login
+    </button>
+
+    <!-- Link to the registration page -->
+    <p class="signup-link">
+      Don't have an account?
+      <a routerLink="/signup">Sign Up</a>
+    </p>
+
+    <!-- Display login errors -->
+    <small
+      class="error"
+      *ngIf="response && response !== 'Login successful'"
+    >
+      {{ response }}
+    </small>
+
+    <!-- Display a success message after logging in -->
+    <small
+      class="success"
+      *ngIf="response === 'Login successful'"
+    >
+      {{ response }}
+    </small>
+
+  </form>
+
+</div>

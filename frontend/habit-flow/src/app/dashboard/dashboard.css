@@ -1,0 +1,565 @@
+/* Main dashboard page */
+.dashboard-page {
+  min-height: 100vh;
+  background-image: url('/dashboard-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 320px;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+
+  color: white;
+}
+
+/* Glassmorphism dashboard container */
+.dashboard-card {
+  width: 900px;
+  max-width: 90%;
+  padding: 40px;
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.30);
+}
+
+/* Dashboard title */
+.dashboard-card h1 {
+  text-align: center;
+  font-size: 44px;
+  margin-bottom: 24px;
+  text-shadow: 0 5px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* Habit completion progress */
+.progress-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 32px;
+}
+
+/* Circular progress container */
+.progress-circle {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+/* Progress SVG */
+.progress-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+/* Shared progress circle styles */
+.progress-track,
+.progress-fill {
+  fill: none;
+  stroke-width: 10;
+}
+
+/* Progress background ring */
+.progress-track {
+  stroke: rgba(255, 255, 255, 0.18);
+}
+
+/* Progress fill ring */
+.progress-fill {
+  stroke: url('#progressGradient');
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+/* Text inside the progress circle */
+.progress-text {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-text strong {
+  font-size: 30px;
+  line-height: 1;
+  text-shadow: 0 5px 18px rgba(0, 0, 0, 0.45);
+}
+
+.progress-text span,
+.progress-summary p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+}
+
+/* Habit and suggested habit lists */
+.habit-list,
+.suggested-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Individual habit cards */
+.habit-card,
+.suggested-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 22px;
+  border-radius: 16px;
+
+  background: rgba(0, 0, 0, 0.35);
+  transition: all 0.25s ease;
+}
+
+/* Hover effect for habit cards */
+.habit-card:hover,
+.suggested-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Style completed habits differently */
+.completed-habit {
+  background: rgba(113, 231, 131, 0.22);
+  border: 1px solid rgba(113, 231, 131, 0.65);
+}
+
+/* Hover effect for completed habits */
+.completed-habit:hover {
+  background: rgba(113, 231, 131, 0.30);
+}
+
+/* Habit titles */
+.habit-card h2,
+.suggested-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+}
+
+/* Habit descriptions */
+.habit-card p,
+.suggested-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Container for habit action buttons */
+.habit-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Current habit streak */
+.streak {
+  margin-top: 10px !important;
+  color: #ffd166 !important;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Center the Add Habit button */
+.button-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Shared button styling */
+.add-button,
+.create-button,
+.suggest-button,
+.complete-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #71e783, #0b8cff);
+
+  transition: all 0.25s ease;
+}
+
+/* Shared button hover effect */
+.add-button:hover,
+.create-button:hover,
+.suggest-button:hover,
+.complete-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 140, 255, 0.35);
+}
+
+/* Completed habit button */
+.completed-button {
+  background: linear-gradient(135deg, #ffd166, #06d6a0);
+  color: #102018;
+}
+
+/* Edit button */
+.edit-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #71b7e7, #0b4fff);
+
+  transition: all 0.25s ease;
+}
+
+/* Edit button hover effect */
+.edit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(11, 79, 255, 0.35);
+}
+
+/* Delete button */
+.delete-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #ff5c5c, #d7263d);
+
+  transition: all 0.25s ease;
+}
+
+/* Delete button hover effect */
+.delete-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(215, 38, 61, 0.35);
+}
+
+/* Section headings */
+.section-title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  font-size: 28px;
+  text-align: center;
+
+  color: white;
+  text-shadow: 0 5px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Custom habit form */
+.custom-form {
+  margin-top: 25px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Form input fields */
+.custom-form input,
+.custom-form textarea {
+  width: 100%;
+
+  padding: 14px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* Placeholder text */
+.custom-form input::placeholder,
+.custom-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus effect for form fields */
+.custom-form input:focus,
+.custom-form textarea:focus {
+  border: 1px solid #71e783;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Allow description box to be resized vertically */
+.custom-form textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Toast notification */
+.notification {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-weight: 700;
+  z-index: 1000;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Success notification */
+.success-notification {
+  background: linear-gradient(135deg, #71e783, #0b8cff);
+}
+
+/* Error notification */
+.error-notification {
+  background: linear-gradient(135deg, #ff5c5c, #d7263d);
+}
+
+/* Delete confirmation overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+/* Delete confirmation dialog */
+.delete-modal {
+  width: 420px;
+  max-width: 90%;
+  padding: 32px;
+  border-radius: 22px;
+
+  background: rgba(20, 25, 35, 0.9);
+  color: white;
+
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* Delete dialog heading */
+.delete-modal h2 {
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+
+/* Delete dialog message */
+.delete-modal p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 28px;
+}
+
+/* Edit habit form fields inside the modal */
+.delete-modal input,
+.delete-modal textarea {
+  width: 100%;
+  margin-bottom: 18px;
+
+  padding: 14px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  text-align: left;
+}
+
+/* Placeholder text for edit habit fields */
+.delete-modal input::placeholder,
+.delete-modal textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus effect for edit habit fields */
+.delete-modal input:focus,
+.delete-modal textarea:focus {
+  border: 1px solid #71e783;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Allow the edit description box to be resized vertically */
+.delete-modal textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Container for modal buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* Shared modal button styling */
+.cancel-button,
+.confirm-delete-button {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+}
+
+/* Cancel button */
+.cancel-button {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Confirm delete button */
+.confirm-delete-button {
+  background: linear-gradient(135deg, #ff5c5c, #d7263d);
+}
+
+/* Profile button displayed in the top-right corner */
+.profile-button {
+
+  /* Position the button */
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
+  /* Remove default button styling */
+  background: transparent;
+  border: none;
+  padding: 0;
+
+  /* Show pointer when hovering */
+  cursor: pointer;
+
+  /* Keep the button above all dashboard elements */
+  z-index: 1001;
+
+  /* Smooth hover animation */
+  transition: transform 0.2s ease;
+}
+
+/* Mission button displayed below the profile button */
+.mission-button {
+
+  /* Position the button */
+  position: fixed;
+  top: 105px;
+  right: 17px;
+
+  /* Button styling */
+  width: 100px;
+  padding: 8px 0;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #71e783, #0b8cff);
+
+  /* Keep the button above all dashboard elements */
+  z-index: 1001;
+
+  /* Smooth hover animation */
+  transition: all 0.2s ease;
+}
+
+/* Mission button hover effect */
+.mission-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(11, 140, 255, 0.35);
+}
+
+/* Sign out button displayed below the profile button */
+.sign-out-button {
+
+  /* Position the button */
+  position: fixed;
+  top: 146px;
+  right: 30px;
+
+  /* Button styling */
+  width: 70px;
+  padding: 8px 0;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: white;
+  background: linear-gradient(135deg, #ff5c5c, #d7263d);
+
+  /* Keep the button above all dashboard elements */
+  z-index: 1001;
+
+  /* Smooth hover animation */
+  transition: all 0.2s ease;
+}
+
+/* Sign out button hover effect */
+.sign-out-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(215, 38, 61, 0.35);
+}
+
+/* Slightly enlarge the button when hovered */
+.profile-button:hover {
+  transform: scale(1.08);
+}
+
+/* Profile icon */
+.profile-icon {
+
+  /* Set the icon size */
+  width: 70px;
+  height: 70px;
+
+  /* Maintain the correct aspect ratio */
+  object-fit: contain;
+
+  /* Remove extra spacing */
+  display: block;
+}
